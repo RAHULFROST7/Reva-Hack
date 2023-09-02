@@ -11,9 +11,23 @@ import json
 
 warnings.filterwarnings('ignore')
 
-st.set_page_config(page_title="Reports", page_icon=":bar_chart:",layout="wide")
+# with open('style.css') as f:
+#     st.markdown(f'<style> {f.read()}</style>', unsafe_allow_html=True)
 
-st.title(" :bar_chart: Plastic detection reports!!")
+
+# Set Streamlit page configuration
+st.set_page_config(page_title="Reports", page_icon=":bar_chart:", layout="wide")
+
+# Increase padding at the bottom and move the heading up a bit using HTML and CSS
+st.markdown(
+    """
+    <div style="padding: 0px 0px 5px 0px; margin: -20px -10px -10px -10px;">
+        <h1 style="margin: -20px 0px 0px 0px; padding: 0px 0px 0px 0px;">📈 Plastic detection Reports</h1>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+# st.title(" :bar_chart: Plastic detection reports!!")
 
 df = pd.read_csv("synthetic_data.csv")
 
