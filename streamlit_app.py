@@ -66,7 +66,6 @@ else:
 # Create for City
 city = st.sidebar.multiselect("Pick the City",df3["city"].unique())
 
-# Filter the data based on Region, State and City
 
 if not region and not state and not city:
     filtered_df = df
@@ -95,11 +94,11 @@ df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric)
 plastic_category_df = df[numeric_columns].sum().reset_index()
 plastic_category_df.columns = ["Plastic Category", "Count"]
 
-"""
+# """
 
-        Plot 1 Bar chart
+#         Plot 1 Bar chart
         
-"""
+# """
 
 with col1:
     st.subheader("Plastic Category Distribution")
@@ -115,11 +114,11 @@ with col1:
     fig_category.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
     st.plotly_chart(fig_category, use_container_width=True, height=300)
     
-"""
+# """
 
-        Plot 2 Pie chart
+#         Plot 2 Pie chart
         
-"""
+# """
 
 with col2:
     st.subheader("Region-wise Plastic Count")
@@ -129,11 +128,11 @@ with col2:
     # fig_region.update_layout(title="Region-wise Plastic Count")
     st.plotly_chart(fig_region, use_container_width=True)
 
-"""
+# """
 
-        Plot 1 Bar chart - data download 
+#         Plot 1 Bar chart - data download 
         
-"""
+# """
 
 cl1, cl2 = st.columns((2))
 with cl1:
@@ -143,11 +142,11 @@ with cl1:
         st.download_button("Download Data", data = csv, file_name = "Category.csv", mime = "text/csv",
                             help = 'Click here to download the data as a CSV file')
 
-"""
+# """
 
-        Plot 2 Pie chart - data download 
+#         Plot 2 Pie chart - data download 
         
-"""
+# """
 
 with cl2:
     with st.expander("Region wise plastic data"):
@@ -157,11 +156,11 @@ with cl2:
         st.download_button("Download Data", data = csv, file_name = "Region.csv", mime = "text/csv",
                         help = 'Click here to download the data as a CSV file')
         
-"""
+# """
 
-        Plot 3 line chart - comparison of amount of plastics categories
+#         Plot 3 line chart - comparison of amount of plastics categories
         
-"""     
+# """     
 
 # Add month and year columns to the DataFrame
 filtered_df["year"] = filtered_df["time"].dt.year
@@ -201,22 +200,22 @@ fig2.update_layout(
 fig2.update_xaxes(type='category')  # Ensure x-axis is treated as a category
 st.plotly_chart(fig2, use_container_width=True)
 
-"""
+# """
 
-        Plot 3 line chart - data download 
+#         Plot 3 line chart - data download 
         
-"""     
+# """     
 
 with st.expander("View Data"):
     st.write(merged_data.style.background_gradient(cmap="Blues"))
     csv = merged_data.to_csv(index=False).encode("utf-8")
     st.download_button('Download Data', data=csv, file_name="TimeSeries.csv", mime='text/csv')
     
-"""
+# """
 
-        Plot 4 geo plot - heat map - hotspots of plastics
+#         Plot 4 geo plot - heat map - hotspots of plastics
         
-"""  
+# """  
    
 # Create a Streamlit app
 st.title('Heatmap of Latitude and Longitude Data')
@@ -235,11 +234,11 @@ m.add_heatmap(
 m.fit_bounds([[31.8100486,75.9797811], [12.9539454,77.4657859]])
 m.to_streamlit(scrolling=True)
 
-"""
+# """
 
-        Plot 5 TreeMap - hirachy of all states containing different level of plastics
+#         Plot 5 TreeMap - hirachy of all states containing different level of plastics
         
-"""     
+# """     
 
 # Create a TreeMap
 st.subheader("Hierarchical view of plastic category")
@@ -253,11 +252,11 @@ fig3.update_traces(root_color="white",marker=dict(cornerradius=1))
 fig3.update_layout(width=800, height=650,margin = dict(t=50, l=25, r=25, b=25))
 st.plotly_chart(fig3, use_container_width=True)
 
-"""
+# """
 
-        Plot 6 heatmap - weather and plastics trend analysis
+#         Plot 6 heatmap - weather and plastics trend analysis
         
-"""     
+# """     
 
 # Create histograms for the "plastic_area" variable
 fig = go.Figure()
@@ -315,11 +314,11 @@ col1.plotly_chart(fig, use_container_width=True)
 # Add the second plot to the second column
 col2.plotly_chart(fig_heatmap, use_container_width=True)
 
-"""
+# """
 
-        Data summary
+#         Data summary
         
-"""     
+# """     
 
 st.subheader("A short summary about month wise detected plastic data")
 
@@ -335,11 +334,11 @@ with st.expander("Click me to view"):
     sub_category_Year = pd.pivot_table(data=filtered_df, values="plastic", index=["city"], columns=filtered_df["time"].dt.month_name())
     st.write(sub_category_Year.style.background_gradient(cmap="Blues"))
     
-"""
+# """
 
-        Plot 7 Goe plot - state wise plastic count
+#         Plot 7 Goe plot - state wise plastic count
         
-"""     
+# """     
 
 st.title('State wise plastics detected')
 # Load GeoJSON data
@@ -401,11 +400,11 @@ map_choropleth.save("choropleth_map.html")
 # Display the Folium map in Streamlit
 st.components.v1.html(open("choropleth_map.html", "r").read(), height=600)
 
-"""
+# """
 
-        Plot 3 line chart - model comparison
+#         Plot 3 line chart - model comparison
         
-"""     
+# """     
 
 st.title('Model Scores Comparison')
 
