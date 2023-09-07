@@ -218,7 +218,7 @@ with st.expander("View Data"):
 # """  
    
 # Create a Streamlit app
-st.title('Heatmap of Latitude and Longitude Data')
+st.title('Plastic Distribution Heatmap')
 
 filepath = "synthetic_data.csv"
 m = leafmap.Map(height="400px", width="800px",center=(20.9238878,79.6734611), zoom=6,draw_control=False, measure_control=False, fullscreen_control=False, attribution_control=True)
